@@ -1,33 +1,46 @@
-//TODO: Complete remaining tasks
+//TODO: Win condition
 
 function playRound(playerSelection, computerSelection) {
-    if (computerSelection == playerSelection) return "Tie!"
+    if (computerSelection == playerSelection) return "Tie!";
     else if (computerSelection == "paper" && playerSelection == "rock" ||
         computerSelection == "scissors" && playerSelection == "paper" ||
-        computerSelection == "rock" && playerSelection == "scissors") result.textContent = "Computer wins this round!"
-    else result.textContent = "Player wins this round!"
+        computerSelection == "rock" && playerSelection == "scissors") {
+        result.textContent = "Computer wins this round!";
+        computerScore++;
+    }
+
+    else {
+        result.textContent = "Player wins this round!";
+        playerScore++;
+    }
 }
 
 function getComputerChoice() {
-    const choices = ["rock", "paper", "scissors"]
-    return choices[Math.floor(Math.random() * choices.length)]
+    const choices = ["rock", "paper", "scissors"];
+    return choices[Math.floor(Math.random() * choices.length)];
 }
 
-const container = document.querySelector('#container')
-const result = document.querySelector('#result')
+let playerScore = 0;
+let computerScore = 0;
 
-const btnRock = document.createElement('button')
-const btnScissors = document.createElement('button')
-const btnPaper = document.createElement('button')
+const container = document.querySelector('#container');
+const result = document.querySelector('#result');
 
-btnRock.textContent = "Rock"
-btnPaper.textContent = "Paper"
-btnScissors.textContent = "Scissors"
+const btnRock = document.createElement('button');
+const btnScissors = document.createElement('button');
+const btnPaper = document.createElement('button');
 
-container.append(btnRock, btnPaper, btnScissors)
+btnRock.textContent = "Rock";
+btnPaper.textContent = "Paper";
+btnScissors.textContent = "Scissors";
 
-const buttons = document.querySelectorAll('#container button')
+container.append(btnRock, btnPaper, btnScissors);
+
+const buttons = document.querySelectorAll('#container button');
 
 buttons.forEach((button) => {
-    button.addEventListener('click', () => playRound(button.textContent, getComputerChoice))
+    button.addEventListener('click', () => {
+        playRound(button.textContent.toLowerCase(), getComputerChoice());
+        console.log(playerScore)});
+    
 })
