@@ -1,5 +1,3 @@
-//TODO: Win condition
-
 function playRound(playerSelection, computerSelection) {
     if (computerSelection == playerSelection) return "Tie!";
     else if (computerSelection == "paper" && playerSelection == "rock" ||
@@ -20,6 +18,31 @@ function getComputerChoice() {
     return choices[Math.floor(Math.random() * choices.length)];
 }
 
+function determineVictor(){
+    if(playerScore === 5){
+        finalWinner("Player")
+    }
+    else if (computerScore === 5){
+        finalWinner("Computer")
+    }
+}
+
+function finalWinner(winner){
+    result.textContent = `${winner} won 5 rounds!`;
+    buttons.forEach(button => {
+        button.setAttribute("disabled", "true")
+    })
+
+    setTimeout(resetGame, 5000)
+}
+
+function resetGame(){
+    buttons.forEach(button => button.removeAttribute("disabled"));
+    result.textContent = "";
+    playerScore = 0;
+    computerScore = 0;
+}
+
 let playerScore = 0;
 let computerScore = 0;
 
@@ -38,9 +61,8 @@ container.append(btnRock, btnPaper, btnScissors);
 
 const buttons = document.querySelectorAll('#container button');
 
-buttons.forEach((button) => {
+buttons.forEach(button => {
     button.addEventListener('click', () => {
         playRound(button.textContent.toLowerCase(), getComputerChoice());
-        console.log(playerScore)});
-    
-})
+        determineVictor()
+    })})
