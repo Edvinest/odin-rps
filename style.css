@@ -1,0 +1,17 @@
+#game{
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   text-align: center;
+}
+
+#container button{
+   margin-right: 1.25em;
+   padding: 1em;
+   background-color: transparent;
+   border-radius: 300px;
+   -webkit-border-radius: 300px;
+   -moz-border-radius: 300px;
+   -ms-border-radius: 300px;
+   -o-border-radius: 300px;
+}
